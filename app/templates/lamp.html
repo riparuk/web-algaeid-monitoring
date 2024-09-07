@@ -180,7 +180,7 @@
                 dateSelected = document.getElementById('date-picker').value;
             }
 
-            fetch(`http://127.0.0.1:8000/items/sensor-data/{{ item.id }}/date/${dateSelected}?interval=${interval}`, {
+            fetch(`/items/sensor-data/{{ item.id }}/date/${dateSelected}?interval=${interval}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json'
