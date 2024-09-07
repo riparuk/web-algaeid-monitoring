@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Item | Algae ID</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script
+        src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+          .content-auto {
+            content-visibility: auto;
+          }
+        }
+    </style>
+    <script src="/static/js/logic.js"></script>
+</head>
+
+<body>
+    <div class="flex">
+        <aside id="default-sidebar"
+            class="w-64 h-screen fixed top-0 left-0 z-40 transition-transform -translate-x-full sm:translate-x-0 shadow-lg border-r-[1px] border-black"
+            aria-label="Sidebar">
+            <div class="h-full px-3 py-4 overflow-y-auto">
+                <ul class="space-y-2 font-medium">
+                    <li>
+                        <span class="ml-3 font-bold text-xl">Dashboard</span>
+                    </li>
+                    <li>
+                        <a href="/"
+                            class="flex items-center p-3 text-gray-800 rounded-lg hover:opacity-80 shadow-md transition duration-300 ease-in-out mt-4">
+                            <svg class="flex-shrink-0 w-5 h-5 text-gray-800 group-hover:text-white" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                                <path
+                                    d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
+                            </svg>
+                            <span class="flex-1 ml-3 whitespace-nowrap">Home</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <button id="burger-btn"
+            class="fixed top-4 right-4 z-50 p-2 bg-white rounded-lg shadow-lg text-gray-800 focus:outline-none sm:hidden block ml-auto">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+
+        <div id="dropdown-menu" class="hidden fixed top-16 right-4 bg-white shadow-lg rounded-lg p-4 w-48 z-50">
+            <ul>
+                <li>
+                    <a href="/"
+                        class="flex items-center p-2 text-gray-800 rounded-lg hover:opacity-80 transition duration-300 ease-in-out">
+                        <svg class="flex-shrink-0 w-5 h-5 text-gray-800 group-hover:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                            <path
+                                d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
+                        </svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Home</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="flex-1 sm:ml-64 p-4 bg-gray-50 rounded-lg h-screen">
+            <section>
+                <div class="flex justify-between items-center">
+                    <h1 class="font-bold text-2xl text-gray-700">Add Item</h1>
+                </div>
+                <div class="mt-8">
+                    <form>
+                        <div class="flex my-3">
+                            <input type="text" id="name" name="name" placeholder="Name" class="w-full h-10 px-3 rounded-lg border-gray-300 focus:ring-blue-500">
+                        </div>
+
+                        <div class="flex my-3">
+                            <input type="text" id="id" name="id" placeholder="ID" class="w-full h-10 px-3 rounded-lg border-gray-300 focus:ring-blue-500">
+                        </div>
+
+                        <div class="flex border-2 justify-between pt-4 border-gray-400 rounded-xl px-8 my-3 bg-grey-50"
+                            onclick="toggleCheckboxAndSection('co2-checkbox', 'co2-section')">
+                            <h1>CO2</h1>
+                            <div class="flex items-center mb-4">
+                                <input id="co2-checkbox" type="checkbox" checked
+                                    class="w-6 h-6 text-green-600 bg-green-100 border-green-300 rounded focus:ring-green-500"
+                                    onchange="toggleCheckboxAndSection('co2-checkbox', 'co2-section')">
+                            </div>
+                        </div>
+
+                        <div class="flex border-2 justify-between pt-4 border-gray-400 rounded-xl px-8 my-3 bg-grey-50"
+                            onclick="toggleCheckboxAndSection('o2-checkbox', 'o2-section')">
+                            <h1>O2 Dissolve</h1>
+                            <div class="flex items-center mb-4">
+                                <input id="o2-checkbox" type="checkbox" checked
+                                    class="w-6 h-6 text-green-600 bg-green-100 border-green-300 rounded focus:ring-green-500"
+                                    onchange="toggleCheckboxAndSection('o2-checkbox', 'o2-section')">
+                            </div>
+                        </div>
+
+                        <div class="flex border-2 justify-between pt-4 border-gray-400 rounded-xl px-8 my-3 bg-grey-50"
+                            onclick="toggleCheckboxAndSection('pm-checkbox', 'pm-section')">
+                            <h1>PM 2.5</h1>
+                            <div class="flex items-center mb-4">
+                                <input id="pm-checkbox" type="checkbox" checked
+                                    class="w-6 h-6 text-green-600 bg-green-100 border-green-300 rounded focus:ring-green-500"
+                                    onchange="toggleCheckboxAndSection('pm-checkbox', 'pm-section')">
+                            </div>
+                        </div>
+
+                        <div class="flex border-2 justify-between pt-4 border-gray-400 rounded-xl px-8 my-3 bg-grey-50"
+                            onclick="toggleCheckboxAndSection('temp-checkbox', 'temp-section')">
+                            <h1>Temp</h1>
+                            <div class="flex items-center mb-4">
+                                <input id="temp-checkbox" type="checkbox" checked
+                                    class="w-6 h-6 text-green-600 bg-green-100 border-green-300 rounded focus:ring-green-500"
+                                    onchange="toggleCheckboxAndSection('temp-checkbox', 'temp-section')">
+                            </div>
+                        </div>
+
+                        <div class="flex border-2 justify-between pt-4 border-gray-400 rounded-xl px-8 my-3 bg-grey-50"
+                            onclick="toggleCheckboxAndSection('humidity-checkbox', 'humidity-section')">
+                            <h1>Humidity</h1>
+                            <div class="flex items-center mb-4">
+                                <input id="humidity-checkbox" type="checkbox" checked
+                                    class="w-6 h-6 text-green-600 bg-green-100 border-green-300 rounded focus:ring-green-500"
+                                    onchange="toggleCheckboxAndSection('humidity-checkbox', 'humidity-section')">
+                            </div>
+                        </div>
+
+                    </form>
+
+                    <div class="flex justify-end mt-8">
+                        <button
+                            class="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition duration-300 shadow-lg"
+                            onclick="postData()">
+                            Confirm
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+<script src="/static/js/logic.js"></script>
+<script>
+    function postData() {
+        const url = 'http://127.0.0.1:8000/items/';
+        const id = document.getElementById('id').value;
+        const name = document.getElementById('name').value;
+
+        if (id === '' || name === '') {
+            alert('ID and Name cannot be empty');
+            return;
+        }
+
+        const data = {
+            id: id,
+            name: name,
+            isActive: true,
+            isCO2: document.getElementById('co2-checkbox').checked,
+            isDO: document.getElementById('o2-checkbox').checked,
+            isPM2dot5: document.getElementById('pm-checkbox').checked,
+            isTemp: document.getElementById('temp-checkbox').checked,
+            isHumidity: document.getElementById('humidity-checkbox').checked
+        };
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            // Handle the result here
+
+            // Redirect to / on successful response
+            window.location.href = '/';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Handle the error here
+            alert('Mohon periksa kembali inputan. Pastikan ID belum terpakai.');
+        });
+    }
+
+        
+    // Burger menu
+    document
+        .getElementById("burger-btn")
+        .addEventListener("click", function (event) {
+            event.stopPropagation();
+
+            const dropdownMenu = document.getElementById("dropdown-menu");
+            if (
+                dropdownMenu.style.display === "none" ||
+                dropdownMenu.style.display === ""
+            ) {
+                dropdownMenu.style.display = "block";
+            } else {
+                dropdownMenu.style.display = "none";
+            }
+        });
+
+    document.addEventListener("click", function (event) {
+        const dropdownMenu = document.getElementById("dropdown-menu");
+        const burgerBtn = document.getElementById("burger-btn");
+        if (
+            !dropdownMenu.contains(event.target) &&
+            !burgerBtn.contains(event.target)
+        ) {
+            dropdownMenu.style.display = "none";
+        }
+    });
+
+    function toggleCheckboxAndSection(checkboxId, sectionId) {
+        const checkbox = document.getElementById(checkboxId);
+        const section = document.getElementById(sectionId);
+
+        // Toggle the checkbox state
+        checkbox.checked = !checkbox.checked;
+
+    }
+
+</script>
+
+</html>

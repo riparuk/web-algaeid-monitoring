@@ -1,0 +1,250 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Algae ID</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+        src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+          .content-auto {
+            content-visibility: auto;
+          }
+        }
+      </style>
+</head>
+
+<body>
+    <div class="flex">
+        <aside id="default-sidebar"
+            class="w-64 h-screen fixed top-0 left-0 z-40 transition-transform -translate-x-full sm:translate-x-0 shadow-lg border-r-[1px] border-black"
+            aria-label="Sidebar">
+            <div class="h-full px-3 py-4 overflow-y-auto">
+                <ul class="space-y-2 font-medium">
+                    <li>
+                        <span class="ml-3 font-bold text-xl">Dashboard</span>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="flex items-center p-3 text-gray-800 rounded-lg hover:opacity-80 shadow-md transition duration-300 ease-in-out mt-4">
+                            <svg class="flex-shrink-0 w-5 h-5 text-gray-800 group-hover:text-white" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                                <path
+                                    d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
+                            </svg>
+                            <span class="flex-1 ml-3 whitespace-nowrap">Home</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <button id="burger-btn"
+            class="fixed top-4 right-4 z-50 p-2 bg-white rounded-lg shadow-lg text-gray-800 focus:outline-none sm:hidden block ml-auto">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+
+        <div id="dropdown-menu" class="hidden fixed top-16 right-4 bg-white shadow-lg rounded-lg p-4 w-48 z-50">
+            <ul>
+                <li>
+                    <a href="#"
+                        class="flex items-center p-2 text-gray-800 rounded-lg hover:opacity-80 hover:shadow-md transition duration-300 ease-in-out">
+                        <svg class="flex-shrink-0 w-5 h-5 text-gray-800 group-hover:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                            <path
+                                d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
+                        </svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Home</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="flex-1 sm:ml-64 p-4 bg-gray-100 min-h-screen">
+            <section>
+                <div class="items-center">
+                    <h1 class="font-bold text-lg mb-6">Dashboard Algae Lamp</h1>
+                    <a href="/add"
+                        class="bg-green-500 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-green-600 transition duration-300">
+                        Add +
+                    </a>
+                </div>
+
+                {% for item in items %}
+                <a href="/lamp/{{ item.id }}" class="flex border-2 justify-between py-4 border-gray-200 bg-white rounded-2xl px-8 my-3 shadow-lg hover:shadow-2xl transition duration-300 sm:text-base text-sm">
+                    <div>
+                        <h1 class="text-gray-800 font-semibold">{{ item.name }}</h1>
+                        <label class="text-gray-500 text-sm block">( {{ item.id }} )</label>
+                    </div>
+                    {% if item.isActive %}
+                        <p class="text-gray-600 text-green-500">Online</p>
+                    {% else %}
+                        <p class="text-gray-600 text-gray-500">Offline</p>
+                    {% endif %}
+                    <div class="flex flex-row items-center">
+                        <button class="mr-4 delete-btn" data-lamp="{{ item.id }}" onclick="event.preventDefault();">
+                            <img src="/static/img/delete.svg" alt="Delete Icon" class="pointer-events-none w-6 h-6">
+                        </button>
+                        <label class="inline-flex items-center cursor-pointer">
+                            <input type="checkbox" value="" class="sr-only peer lamp-toggle" data-lamp="{{ item.id }}"
+                                {% if item.isActive %}checked{% endif %}>
+                            <div
+                                class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600">
+                            </div>
+                        </label>
+                    </div>
+                </a>
+                {% endfor %}
+
+        </div>
+
+        <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden px-4">
+            <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full">
+                <h2 id="modal-message" class="text-lg font-semibold mb-4">Are you sure?</h2>
+                <div class="flex justify-end">
+                    <button id="confirm-btn" class="bg-green-500 text-white px-4 py-2 rounded mr-2">Confirm</button>
+                    <button id="cancel-btn" class="bg-red-500 text-white px-4 py-2 rounded">Cancel</button>
+                </div>
+            </div>
+        </div>
+        </section>
+    </div>
+
+    </div>
+</body>
+<script src="/static/js/logic.js"></script>
+<script>
+    // Modal toggle dashboard
+    const modal = document.getElementById("modal");
+    const modalMessage = document.getElementById("modal-message");
+    const confirmBtn = document.getElementById("confirm-btn");
+    const cancelBtn = document.getElementById("cancel-btn");
+
+    let currentAction = "";
+    let selectedLamp = null;
+    let currentToggle = null;
+
+    document.querySelectorAll(".delete-btn").forEach((btn) => {
+        btn.addEventListener("click", function () {
+            selectedLamp = this.dataset.lamp;
+            currentAction = "delete";
+            modalMessage.textContent = `Apakah anda ingin menghapus lamp ${selectedLamp}?`;
+            modal.classList.remove("hidden");
+        });
+    });
+
+    document.querySelectorAll(".lamp-toggle").forEach((toggle) => {
+        toggle.addEventListener("change", function () {
+            selectedLamp = this.dataset.lamp;
+            currentToggle = this;
+            currentAction = this.checked ? "turn on" : "turn off";
+            modalMessage.textContent = this.checked
+                ? `Apakah anda ingin menghidupkan monitoring ${selectedLamp}?`
+                : `Apakah anda ingin mematikan monitoring ${selectedLamp}?`;
+            modal.classList.remove("hidden");
+        });
+    });
+
+    confirmBtn.addEventListener("click", function () {
+        if (currentAction === "delete") {
+            fetch(`/items/${selectedLamp}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response data
+                    location.reload(); // Refresh the page
+                })
+                .catch(error => {
+                    // Handle the error
+                });
+        } else if (currentAction === "turn on") {
+            fetch(`/items/${selectedLamp}/activate`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response data
+                    location.reload(); // Refresh the page
+                })
+                .catch(error => {
+                    // Handle the error
+                });
+        } else if (currentAction === "turn off") {
+            fetch(`/items/${selectedLamp}/deactivate`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response data
+                    location.reload(); // Refresh the page
+                })
+                .catch(error => {
+                    // Handle the error
+                });
+        }
+        modal.classList.add("hidden");
+    });
+
+    cancelBtn.addEventListener("click", function () {
+        modal.classList.add("hidden");
+        if (currentAction !== "delete") {
+            currentToggle.checked = !currentToggle.checked;
+        }
+    });
+
+    // Burger menu
+    document
+        .getElementById("burger-btn")
+        .addEventListener("click", function (event) {
+            event.stopPropagation();
+
+            const dropdownMenu = document.getElementById("dropdown-menu");
+            if (
+                dropdownMenu.style.display === "none" ||
+                dropdownMenu.style.display === ""
+            ) {
+                dropdownMenu.style.display = "block";
+            } else {
+                dropdownMenu.style.display = "none";
+            }
+        });
+
+    document.addEventListener("click", function (event) {
+        const dropdownMenu = document.getElementById("dropdown-menu");
+        const burgerBtn = document.getElementById("burger-btn");
+        if (
+            !dropdownMenu.contains(event.target) &&
+            !burgerBtn.contains(event.target)
+        ) {
+            dropdownMenu.style.display = "none";
+        }
+    });
+</script>
+
+</html>
