@@ -1,7 +1,10 @@
 from datetime import date, datetime, time, timedelta
 import os
+import shutil
+from tempfile import NamedTemporaryFile
 from fastapi import APIRouter, Depends, HTTPException, Query
 from fastapi.responses import StreamingResponse
+from gtts import gTTS
 import pandas as pd
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
@@ -197,3 +200,32 @@ async def get_sensor_data_by_date(item_id: str, day_date: str, interval: str):
             Temp=data.get("Temp", []),
             Humidity=data.get("Humidity", [])
         )
+    
+@router.post("/{item_id}/text-to-speech")
+async def text_to_speech(item_id: str, text: str):
+    """
+    Convert text to speech audio and save it as an MP3 file.
+    """
+    # Generate the speech audio
+    tts = gTTS(text)
+    audio_file = NamedTemporaryFile(suffix=".mp3", delete=False)
+    tts.save(audio_file.name)
+    
+    # Save the audio file to the appropriate location
+    folder_path = f"data/{item_id}/audio/"
+    os.makedirs(folder_path, exist_ok=True)
+    file_path = os.path.join(folder_path, f"{item_id}.mp3")
+    shutil.move(audio_file.name, file_path)
+    
+    return {"message": "Text converted to speech audio successfully"}
+
+@router.get("/{item_id}/text-to-speech")
+async def get_text_to_speech(item_id: str):
+    """
+    Retrieve the text to speech audio file.
+    """
+    file_path = f"data/{item_id}/audio/{item_id}.mp3"
+    if not os.path.isfile(file_path):
+        raise HTTPException(status_code=404, detail="Audio file not found")
+    
+    return StreamingResponse(open(file_path, "rb"), media_type="audio/mpeg")
