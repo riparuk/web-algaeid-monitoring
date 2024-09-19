@@ -13,7 +13,7 @@
             theme: {
                 extend: {
                     colors: {
-                        clifford: '#da373d',
+                        clifford: '#47C588',
                     }
                 }
             }
@@ -26,225 +26,263 @@
           }
         }
       </style>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
 </head>
 
 <body>
-    <div class="flex">
-        <aside id="default-sidebar"
-            class="w-64 h-screen fixed top-0 left-0 z-40 transition-transform -translate-x-full sm:translate-x-0 shadow-lg border-r-[1px] border-black"
-            aria-label="Sidebar">
-            <div class="h-full px-3 py-4 overflow-y-auto">
-                <ul class="space-y-2 font-medium">
-                    <li>
-                        <span class="ml-3 font-bold text-xl">Dashboard</span>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="flex items-center p-3 text-gray-800 rounded-lg hover:opacity-80 shadow-md transition duration-300 ease-in-out mt-4">
-                            <svg class="flex-shrink-0 w-5 h-5 text-gray-800 group-hover:text-white" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-                                <path
-                                    d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
-                            </svg>
-                            <span class="flex-1 ml-3 whitespace-nowrap">Home</span>
-                        </a>
-                    </li>
-                </ul>
+    <div
+        class="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2">
+        <div class="grid h-full max-w-lg grid-cols-3 mx-auto">
+            <a href="/" data-tooltip-target="tooltip-home" type="button"
+                class="inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-gray-50 group">
+                <svg class="w-5 h-5 mb-1 text-gray-500 group-hover:opacity-70 " aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+                </svg>
+                <span class="sr-only">Home</span>
+            </a>
+
+            <div id="tooltip-home" role="tooltip"
+                class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip">
+                Home
+                <div class="tooltip-arrow" data-popper-arrow></div>
             </div>
-        </aside>
-
-        <button id="burger-btn"
-            class="fixed top-4 right-4 z-50 p-2 bg-white rounded-lg shadow-lg text-gray-800 focus:outline-none sm:hidden block ml-auto">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-        </button>
-
-        <div id="dropdown-menu" class="hidden fixed top-16 right-4 bg-white shadow-lg rounded-lg p-4 w-48 z-50">
-            <ul>
-                <li>
-                    <a href="#"
-                        class="flex items-center p-2 text-gray-800 rounded-lg hover:opacity-80 hover:shadow-md transition duration-300 ease-in-out">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-800 group-hover:text-white" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-                            <path
-                                d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
-                        </svg>
-                        <span class="flex-1 ml-3 whitespace-nowrap">Home</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="flex-1 sm:ml-64 p-4 bg-gray-100 min-h-screen">
-            <section>
-                <div class="items-center">
-                    <h1 class="font-bold text-lg mb-6">Dashboard Algae Lamp</h1>
-                    <a href="/add"
-                        class="bg-green-500 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-green-600 transition duration-300">
-                        Add +
-                    </a>
-                </div>
-
-                {% for item in items %}
-                <a href="/lamp/{{ item.id }}" class="flex border-2 justify-between py-4 border-gray-200 bg-white rounded-2xl px-8 my-3 shadow-lg hover:shadow-2xl transition duration-300 sm:text-base text-sm">
-                    <div>
-                        <h1 class="text-gray-800 font-semibold">{{ item.name }}</h1>
-                        <label class="text-gray-500 text-sm block">( {{ item.id }} )</label>
-                    </div>
-                    {% if item.isActive %}
-                        <p class="text-gray-600 text-green-500">Online</p>
-                    {% else %}
-                        <p class="text-gray-600 text-gray-500">Offline</p>
-                    {% endif %}
-                    <div class="flex flex-row items-center">
-                        <button class="mr-4 delete-btn" data-lamp="{{ item.id }}" onclick="event.preventDefault();">
-                            <img src="/static/img/delete.svg" alt="Delete Icon" class="pointer-events-none w-6 h-6">
-                        </button>
-                        <label class="inline-flex items-center cursor-pointer">
-                            <input type="checkbox" value="" class="sr-only peer lamp-toggle" data-lamp="{{ item.id }}"
-                                {% if item.isActive %}checked{% endif %}>
-                            <div
-                                class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600">
-                            </div>
-                        </label>
-                    </div>
+            <div class="flex items-center justify-center">
+                <a href="/add" data-tooltip-target="tooltip-new" type="button"
+                    class="inline-flex items-center justify-center w-10 h-10 font-medium bg-clifford rounded-full hover:opacity-70 group focus:ring-4 focus:ring-blue-300 focus:outline-none">
+                    <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 18 18">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 1v16M1 9h16" />
+                    </svg>
+                    <span class="sr-only">New item</span>
                 </a>
-                {% endfor %}
+            </div>
+            <div id="tooltip-new" role="tooltip"
+                class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip">
+                Create new item
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+            <button data-tooltip-target="tooltip-profile" type="button"
+                class="inline-flex flex-col items-center justify-center px-5 rounded-e-full hover:bg-gray-50 group">
+                <svg class="w-5 h-5 mb-1 text-gray-500 group-hover:text-blue-600" aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+                </svg>
+                <span class="sr-only">Profile</span>
+            </button>
+            <div id="tooltip-profile" role="tooltip"
+                class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip">
+                Profile
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+        </div>
+    </div>
 
+    <div class="flex-1 p-4 bg-clifford min-h-screen">
+        <div class="items-center">
+            <a href="/" class="flex items-center mb-6">
+                <img src="/static/img/logo_white.png" alt="Logo" class="w-12 mr-4">
+                <h1 class="font-bold text-lg text-white">AlgaeID Monitoring Dashboard</h1>
+            </a>
         </div>
 
-        <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden px-4">
-            <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full">
-                <h2 id="modal-message" class="text-lg font-semibold mb-4">Are you sure?</h2>
-                <div class="flex justify-end">
-                    <button id="confirm-btn" class="bg-green-500 text-white px-4 py-2 rounded mr-2">Confirm</button>
-                    <button id="cancel-btn" class="bg-red-500 text-white px-4 py-2 rounded">Cancel</button>
+        <div id="accordion-collapse" data-accordion="collapse">
+            <h2 id="accordion-collapse-heading-1 ">
+                <button type="button"
+                    class="flex items-center justify-between w-full p-5 font-medium rtl:text-right rounded-t-xl focus:ring-1 bg-white focus:ring-gray-50 gap-3"
+                    data-accordion-target="#accordion-collapse-body-1" aria-expanded="true"
+                    aria-controls="accordion-collapse-body-1">
+                    <span>Apa itu AlgaeID Monitoring?</span>
+                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 5 5 1 1 5" />
+                    </svg>
+                </button>
+            </h2>
+            <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
+                <div class="p-5 border border-b-0 border-gray-200 bg-gray-50">
+                    <p class="mb-2 text-clifford">AlgaeID Monitoring memantau kualitas udara di sekitar lampu alga dan
+                        efektivitasnya. Website ini juga berfungsi sebagai laporan keberlanjutan, memberikan informasi
+                        dampak lingkungan dari penggunaan lampu alga.</p>
+                    <p class="text-clifford">Pengguna dapat memantau data real-time dan mendapatkan wawasan mengenai
+                        kontribusi alga terhadap kualitas udara dan keberlanjutan lingkungan.</p>
+                    <p class="text-clifford mt-4">Untuk menambahkan item baru, tekan tombol plus (+) di bagian bawah
+                        layar.</p>
+                </div>
+            </div>
+            <h2 id="accordion-collapse-heading-2">
+                <button type="button"
+                    class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 bg-white focus:ring-4 focus:ring-gray-200 gap-3"
+                    data-accordion-target="#accordion-collapse-body-2" aria-expanded="false"
+                    aria-controls="accordion-collapse-body-2">
+                    <span>Cara kerja?</span>
+                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 5 5 1 1 5" />
+                    </svg>
+                </button>
+            </h2>
+            <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
+                <div class="p-5 border border-b-0 border-gray-200 bg-gray-50">
+                    <p class="mb-2 text-clifford">AlgaeID Monitoring menggunakan sensor untuk mengukur kualitas udara di
+                        sekitar lampu alga. Data dikirim ke server dan ditampilkan di dashboard dalam bentuk grafik dan
+                        laporan.</p>
+                    <p class="text-clifford">Pengguna dapat melihat data real-time, mendapatkan notifikasi perubahan
+                        signifikan, dan mengunduh laporan untuk analisis.</p>
                 </div>
             </div>
         </div>
-        </section>
+
+        <div class="flex justify-center items-center mt-8 mb-4">
+            <h2 class="text-2xl font-semibold text-white border-2 border-white rounded-full px-4 py-2">Lamp List</h2>
+        </div>
+
+        {% for item in items %}
+        <a href="/lamp/{{ item.id }}"
+            class="flex border-2 justify-between py-4 border-gray-200 bg-white rounded-2xl px-8 my-3 shadow-lg hover:shadow-2xl transition duration-300 sm:text-base text-sm">
+            <div>
+                <h1 class="text-gray-800 font-semibold">{{ item.name }}</h1>
+                <label class="text-gray-500 text-sm block">( {{ item.id }} )</label>
+            </div>
+            {% if item.isActive %}
+            <p class="text-gray-600 text-green-500">Online</p>
+            {% else %}
+            <p class="text-gray-600 text-gray-500">Offline</p>
+            {% endif %}
+            <div class="flex flex-row items-center">
+                <button class="mr-4 delete-btn" data-lamp="{{ item.id }}" onclick="event.preventDefault();">
+                    <img src="/static/img/delete.svg" alt="Delete Icon" class="pointer-events-none w-6 h-6">
+                </button>
+                <label class="inline-flex items-center cursor-pointer">
+                    <input type="checkbox" value="" class="sr-only peer lamp-toggle" data-lamp="{{ item.id }}" {% if
+                        item.isActive %}checked{% endif %}>
+                    <div
+                        class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600">
+                    </div>
+                </label>
+            </div>
+        </a>
+        {% endfor %}
+
+        {# #}
+        <div class="flex justify-center items-center mt-5">
+            <div class="w-12 h-12 flex items-center justify-center">
+                {# <p class="text-gray-500">Blank Area</p> #}
+            </div>
+        </div>
     </div>
 
+    <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden px-4">
+        <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full">
+            <h2 id="modal-message" class="text-lg font-semibold mb-4">Are you sure?</h2>
+            <div class="flex justify-end">
+                <button id="confirm-btn" class="bg-green-500 text-white px-4 py-2 rounded mr-2">Confirm</button>
+                <button id="cancel-btn" class="bg-red-500 text-white px-4 py-2 rounded">Cancel</button>
+            </div>
+        </div>
     </div>
-</body>
-<script src="/static/js/logic.js"></script>
-<script>
-    // Modal toggle dashboard
-    const modal = document.getElementById("modal");
-    const modalMessage = document.getElementById("modal-message");
-    const confirmBtn = document.getElementById("confirm-btn");
-    const cancelBtn = document.getElementById("cancel-btn");
 
-    let currentAction = "";
-    let selectedLamp = null;
-    let currentToggle = null;
 
-    document.querySelectorAll(".delete-btn").forEach((btn) => {
-        btn.addEventListener("click", function () {
-            selectedLamp = this.dataset.lamp;
-            currentAction = "delete";
-            modalMessage.textContent = `Apakah anda ingin menghapus lamp ${selectedLamp}?`;
-            modal.classList.remove("hidden");
+
+    <script src="/static/js/logic.js"></script>
+    <script>
+        // Modal toggle dashboard
+        const modal = document.getElementById("modal");
+        const modalMessage = document.getElementById("modal-message");
+        const confirmBtn = document.getElementById("confirm-btn");
+        const cancelBtn = document.getElementById("cancel-btn");
+
+        let currentAction = "";
+        let selectedLamp = null;
+        let currentToggle = null;
+
+        document.querySelectorAll(".delete-btn").forEach((btn) => {
+            btn.addEventListener("click", function () {
+                selectedLamp = this.dataset.lamp;
+                currentAction = "delete";
+                modalMessage.textContent = `Apakah anda ingin menghapus lamp ${selectedLamp}?`;
+                modal.classList.remove("hidden");
+            });
         });
-    });
 
-    document.querySelectorAll(".lamp-toggle").forEach((toggle) => {
-        toggle.addEventListener("change", function () {
-            selectedLamp = this.dataset.lamp;
-            currentToggle = this;
-            currentAction = this.checked ? "turn on" : "turn off";
-            modalMessage.textContent = this.checked
-                ? `Apakah anda ingin menghidupkan monitoring ${selectedLamp}?`
-                : `Apakah anda ingin mematikan monitoring ${selectedLamp}?`;
-            modal.classList.remove("hidden");
+        document.querySelectorAll(".lamp-toggle").forEach((toggle) => {
+            toggle.addEventListener("change", function () {
+                selectedLamp = this.dataset.lamp;
+                currentToggle = this;
+                currentAction = this.checked ? "turn on" : "turn off";
+                modalMessage.textContent = this.checked
+                    ? `Apakah anda ingin menghidupkan monitoring ${selectedLamp}?`
+                    : `Apakah anda ingin mematikan monitoring ${selectedLamp}?`;
+                modal.classList.remove("hidden");
+            });
         });
-    });
 
-    confirmBtn.addEventListener("click", function () {
-        if (currentAction === "delete") {
-            fetch(`/items/${selectedLamp}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    // Handle the response data
-                    location.reload(); // Refresh the page
+        confirmBtn.addEventListener("click", function () {
+            if (currentAction === "delete") {
+                fetch(`/items/${selectedLamp}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 })
-                .catch(error => {
-                    // Handle the error
-                });
-        } else if (currentAction === "turn on") {
-            fetch(`/items/${selectedLamp}/activate`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    // Handle the response data
-                    location.reload(); // Refresh the page
+                    .then(response => response.json())
+                    .then(data => {
+                        // Handle the response data
+                        location.reload(); // Refresh the page
+                    })
+                    .catch(error => {
+                        // Handle the error
+                    });
+            } else if (currentAction === "turn on") {
+                fetch(`/items/${selectedLamp}/activate`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 })
-                .catch(error => {
-                    // Handle the error
-                });
-        } else if (currentAction === "turn off") {
-            fetch(`/items/${selectedLamp}/deactivate`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    // Handle the response data
-                    location.reload(); // Refresh the page
+                    .then(response => response.json())
+                    .then(data => {
+                        // Handle the response data
+                        location.reload(); // Refresh the page
+                    })
+                    .catch(error => {
+                        // Handle the error
+                    });
+            } else if (currentAction === "turn off") {
+                fetch(`/items/${selectedLamp}/deactivate`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 })
-                .catch(error => {
-                    // Handle the error
-                });
-        }
-        modal.classList.add("hidden");
-    });
+                    .then(response => response.json())
+                    .then(data => {
+                        // Handle the response data
+                        location.reload(); // Refresh the page
+                    })
+                    .catch(error => {
+                        // Handle the error
+                    });
+            }
+            modal.classList.add("hidden");
+        });
 
-    cancelBtn.addEventListener("click", function () {
-        modal.classList.add("hidden");
-        if (currentAction !== "delete") {
-            currentToggle.checked = !currentToggle.checked;
-        }
-    });
-
-    // Burger menu
-    document
-        .getElementById("burger-btn")
-        .addEventListener("click", function (event) {
-            event.stopPropagation();
-
-            const dropdownMenu = document.getElementById("dropdown-menu");
-            if (
-                dropdownMenu.style.display === "none" ||
-                dropdownMenu.style.display === ""
-            ) {
-                dropdownMenu.style.display = "block";
-            } else {
-                dropdownMenu.style.display = "none";
+        cancelBtn.addEventListener("click", function () {
+            modal.classList.add("hidden");
+            if (currentAction !== "delete") {
+                currentToggle.checked = !currentToggle.checked;
             }
         });
 
-    document.addEventListener("click", function (event) {
-        const dropdownMenu = document.getElementById("dropdown-menu");
-        const burgerBtn = document.getElementById("burger-btn");
-        if (
-            !dropdownMenu.contains(event.target) &&
-            !burgerBtn.contains(event.target)
-        ) {
-            dropdownMenu.style.display = "none";
-        }
-    });
-</script>
+
+    </script>
+
+</body>
 
 </html>
