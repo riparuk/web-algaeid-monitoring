@@ -198,9 +198,9 @@
             </button>
         </div>
 
-        <div class="mt-8 bg-white p-2 rounded-xl">
+        <div class="mt-8 bg-white p-1 rounded-xl">
             <div class="relative w-full">
-                <canvas id="myChart" class="inset-0 w-full h-full"></canvas>
+                <canvas id="myChart" style="height:400px" class="inset-0 w-full h-full"></canvas>
             </div>
         </div>
         {# #}
@@ -297,7 +297,7 @@
                         sensorChart.destroy();
                     }
 
-                    const labels = data.timestamps.map(ts => new Date(ts * 1000).toLocaleString());
+                    const labels = data.timestamps.map(ts => new Date(ts * 1000).toLocaleTimeString());
 
                     sensorChart = new Chart(ctx, {
                         type: 'line',
