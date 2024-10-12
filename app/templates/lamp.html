@@ -176,6 +176,13 @@
                 <h1>Humidity</h1>
             </div>
             {% endif %}
+            {% if item.isTurbidity %}
+            <div id="turbidity-section"
+                class="p-4 text-center border-2 border-clifford mb-2 bg-gray-100 rounded-full shadow-sm">
+                <h1 id="turbidity-value" class="font-bold text-xl">-</h1>
+                <h1>Turbidity</h1>
+            </div>
+            {% endif %}
         </div>
         <div class="flex justify-between items-center mt-8">
             <div class="relative">
@@ -252,6 +259,7 @@
         const pm_value = document.getElementById('pm-value');
         const temp_value = document.getElementById('temp-value');
         const humidity_value = document.getElementById('humidity-value');
+        const turbidity_value = document.getElementById('turbidity-value');
 
         // Set the default date to today
         const today = new Date().toISOString().split('T')[0];
@@ -287,6 +295,9 @@
                     {% endif %}
                     {% if item.isHumidity %}
                     humidity_value.textContent = data.Humidity[data.Humidity.length - 1];
+                    {% endif %}
+                    {% if item.isTurbidity %}
+                    turbidity_value.textContent = data.Turbidity[data.Turbidity.length - 1];
                     {% endif %}
 
                     // Process the fetched data here
@@ -352,7 +363,17 @@
                         backgroundColor: 'rgba(255, 159, 64, 0.2)',
                             borderWidth: 1,
                                 fill: true
-        }
+        },
+        {% endif %}
+        {% if item.isTurbidity %}
+        {
+            label: 'Turbidity',
+                data: data.Turbidity,
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                            borderWidth: 1,
+                                fill: true
+        },
         {% endif %}
                         ]
                     },

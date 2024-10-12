@@ -20,6 +20,7 @@ def create_item(db: Session, item: schemas.ItemCreate):
         isPM2dot5=item.isPM2dot5,
         isTemp=item.isTemp,
         isHumidity=item.isHumidity,
+        isTurbidity=item.isTurbidity
     )
     db.add(db_item)
     db.commit()
@@ -45,6 +46,7 @@ def update_item(db: Session, item_id: str, item: schemas.ItemCreate):
         db_item.isPM2dot5 = item.isPM2dot5
         db_item.isTemp = item.isTemp
         db_item.isHumidity = item.isHumidity
+        db_item.isTurbidity = item.isTurbidity
         db.commit()
         db.refresh(db_item)
     return db_item
@@ -69,7 +71,8 @@ def get_sensor_data_for_date(item_id: str, date: date, interval: str = 'minute')
         "DO": [],
         "PM2dot5": [],
         "Temp": [],
-        "Humidity": []
+        "Humidity": [],
+        "Turbidity": []
     }
 
     # Format the date to match the CSV file naming convention
@@ -90,11 +93,11 @@ def get_sensor_data_for_date(item_id: str, date: date, interval: str = 'minute')
 
         # Determine the frequency for resampling based on the interval
         if interval == 'minute':
-            resample_freq = 'T'  # minute-level resampling
+            resample_freq = 't'  # minute-level resampling
         elif interval == 'hour':
-            resample_freq = 'H'  # hour-level resampling
+            resample_freq = 'h'  # hour-level resampling
         else:
-            resample_freq = 'S'  # second-level (default)
+            resample_freq = 's'  # second-level (default)
 
         # Resample data based on the selected interval
         df_resampled = df.set_index('timestamp').resample(resample_freq).mean()
@@ -109,6 +112,7 @@ def get_sensor_data_for_date(item_id: str, date: date, interval: str = 'minute')
         all_data['PM2dot5'] = [int(value) for value in df_resampled['PM2dot5'].tolist() if pd.notna(value)]
         all_data['Temp'] = [int(value) for value in df_resampled['Temp'].tolist() if pd.notna(value)]
         all_data['Humidity'] = [int(value) for value in df_resampled['Humidity'].tolist() if pd.notna(value)]
+        all_data['Turbidity'] = [int(value) for value in df_resampled['Turbidity'].tolist() if pd.notna(value)]
 
 
     except FileNotFoundError:

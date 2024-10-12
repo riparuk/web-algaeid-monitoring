@@ -12,4 +12,5 @@ class Item(Base):
     isPM2dot5 = Column(Boolean, default=False)
     isTemp = Column(Boolean, default=False)
     isHumidity = Column(Boolean, default=False)
+    isTurbidity = Column(Boolean, default=False)
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now())  # Track last update time

@@ -11,6 +11,7 @@ class ItemBase(BaseModel):
     isPM2dot5: bool
     isTemp: bool
     isHumidity: bool
+    isTurbidity: bool
 
 class ItemCreate(ItemBase):
     # Pastikan id dan name tidak boleh kosong

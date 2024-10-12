@@ -103,6 +103,16 @@
                             </div>
                         </div>
 
+                        <div class="flex border-2 justify-between pt-4 rounded-xl px-8 my-3 bg-white"
+                            onclick="toggleCheckboxAndSection('turbidity-checkbox', 'turbidity-section')">
+                            <h1 class="text-clifford">Turbidity</h1>
+                            <div class="flex items-center mb-4">
+                                <input id="turbidity-checkbox" type="checkbox" checked
+                                    class="w-6 h-6 text-clifford bg-green-100 border-green-300 rounded focus:ring-clifford"
+                                    onchange="toggleCheckboxAndSection('turbidity-checkbox', 'turbidity-section')">
+                            </div>
+                        </div>
+
                     </form>
 
                     <div class="flex justify-end mt-8">
@@ -137,7 +147,8 @@
             isDO: document.getElementById('o2-checkbox').checked,
             isPM2dot5: document.getElementById('pm-checkbox').checked,
             isTemp: document.getElementById('temp-checkbox').checked,
-            isHumidity: document.getElementById('humidity-checkbox').checked
+            isHumidity: document.getElementById('humidity-checkbox').checked,
+            isTurbidity: document.getElementById('turbidity-checkbox').checked,
         };
 
         fetch(url, {

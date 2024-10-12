@@ -27,6 +27,7 @@ class Value(BaseModel):
     PM2dot5: Optional[List[int]] = None
     Temp: Optional[List[int]] = None
     Humidity: Optional[List[int]] = None
+    Turbidity: Optional[List[int]] = None
 
 # Tambahkan CRUD endpoints
 @router.post("/", response_model=schemas.Item)
@@ -118,6 +119,7 @@ def save_to_csv(item_id: str, sensor_data: dict):
         "PM2dot5": sensor_data.get("PM2dot5", []),
         "Temp": sensor_data.get("Temp", []),
         "Humidity": sensor_data.get("Humidity", []),
+        "Turbidity": sensor_data.get("Turbidity", [])
     }
     
     # Create DataFrame
@@ -157,7 +159,8 @@ async def add_sensor_data(item_id: str, sensor_data: Value, db: Session = Depend
         "DO": sensor_data.DO,
         "PM2dot5": sensor_data.PM2dot5,
         "Temp": sensor_data.Temp,
-        "Humidity": sensor_data.Humidity
+        "Humidity": sensor_data.Humidity,
+        "Turbidity": sensor_data.Turbidity
     }
 
     # Save to CSV
@@ -189,7 +192,8 @@ async def get_sensor_data_by_date(item_id: str, day_date: str, interval: str):
             DO=[],
             PM2dot5=[],
             Temp=[],
-            Humidity=[]
+            Humidity=[],
+            Turbidity=[]
         )
     else:
         return Value(
@@ -198,7 +202,8 @@ async def get_sensor_data_by_date(item_id: str, day_date: str, interval: str):
             DO=data.get("DO", []),
             PM2dot5=data.get("PM2dot5", []),
             Temp=data.get("Temp", []),
-            Humidity=data.get("Humidity", [])
+            Humidity=data.get("Humidity", []),
+            Turbidity=data.get("Turbidity", [])
         )
     
 @router.post("/{item_id}/text-to-speech")
